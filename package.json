@@ -1,0 +1,30 @@
+{
+  "name": "nodejsbasics",
+  "version": "1.0.0",
+  "description": "Simple webapp to track location with mongodb",
+  "main": "server.js",
+  "dependencies": {
+    "mongodb": "^3.6.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArtemSmirnovHSE/nodejsbasics.git"
+  },
+  "keywords": [
+    "ip",
+    "geo",
+    "server",
+    "newbie"
+  ],
+  "author": "krinzh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArtemSmirnovHSE/nodejsbasics/issues"
+  },
+  "homepage": "https://github.com/ArtemSmirnovHSE/nodejsbasics#readme"
+}
