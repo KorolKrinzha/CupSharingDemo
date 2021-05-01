@@ -1,11 +1,9 @@
 {
   "name": "nodejsbasics",
   "version": "1.0.0",
-  "description": "Simple webapp to track location with mongodb",
+  "description": "My fisrt js app for geo tracking",
   "main": "server.js",
-  "dependencies": {
-    "mongodb": "^3.6.6"
-  },
+  "dependencies": {},
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,10 +14,9 @@
     "url": "git+https://github.com/ArtemSmirnovHSE/nodejsbasics.git"
   },
   "keywords": [
-    "ip",
     "geo",
-    "server",
-    "newbie"
+    "js",
+    "json"
   ],
   "author": "krinzh",
   "license": "ISC",
