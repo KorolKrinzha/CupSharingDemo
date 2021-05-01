@@ -1,7 +1,11 @@
 #!/bin/bash
 
+if  [[ $1 != "" ]] 
+then
+
+
 ip=$(cat ./apps/secret/ip)
-echo $ip
+
 
 while :
 do
@@ -13,12 +17,14 @@ python3 -c "import sys, json; print(json.load(sys.stdin)['longitude'])")
 
 
 
-curl -s "http://$ip/receiveport1?lat=$lat&long=$long"
-response=$(curl -s "http://$ip/receiveport1?lat=$lat&long=$long")
+curl -s "http://$ip/receiveport?id=$1&lat=$lat&long=$long"
+response=$(curl -s "http://$ip/receiveport?id=$1&lat=$lat&long=$long")
+
+
 
 if  [[ $response == "Sent" ]] 
 then 
-sleep 1m
+sleep 30
 else
 break
 fi
@@ -26,3 +32,8 @@ fi
 
 
 done
+
+else
+echo No port specififed
+fi
+
