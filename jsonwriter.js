@@ -5,19 +5,24 @@ const dbinit = function () {
     {
        "Portid": 1,
        "Latitude": "unknown",
-       "Longtitude": "unknown"
+       "Longtitude": "unknown",
+       "Status": "free"
     },
     {
-     "Portid": 2,
-     "Latitude": "unknown",
-     "Longtitude": "unknown"
-     },
-     {
-         "Portid": 3,
-         "Latitude": "unknown",
-         "Longtitude": "unknown"
-      }
+       "Portid": 2,
+       "Latitude": "unknown",
+       "Longtitude": "unknown",
+       "Status": "free"
+    },
+    {
+       "Portid": 3,
+       "Latitude": "unknown",
+       "Longtitude": "unknown",
+       "Status": "free"
+    }
  ]
+
+ 
   var jsonString = JSON.stringify(jsonstart);
 
   fs.writeFileSync("./JSON/ports.json", jsonString);

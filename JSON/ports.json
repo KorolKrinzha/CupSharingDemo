@@ -1,17 +1,20 @@
 [
    {
       "Portid": 1,
-      "Latitude": "81",
-      "Longtitude": "35"
+      "Latitude": "unknown",
+      "Longtitude": "unknown",
+      "Status": "free"
    },
    {
       "Portid": 2,
-      "Latitude": "81",
-      "Longtitude": "35"
+      "Latitude": "unknown",
+      "Longtitude": "unknown",
+      "Status": "free"
    },
    {
       "Portid": 3,
       "Latitude": "unknown",
-      "Longtitude": "unknown"
+      "Longtitude": "unknown",
+      "Status": "free"
    }
 ]
