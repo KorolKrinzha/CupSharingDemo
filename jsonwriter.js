@@ -4,20 +4,20 @@ const dbinit = function () {
   var jsonstart = [
     {
        "Portid": 1,
-       "Latitude": "unknown",
        "Longtitude": "unknown",
+       "Latitude": "unknown",       
        "Status": "free"
     },
     {
        "Portid": 2,
-       "Latitude": "unknown",
        "Longtitude": "unknown",
+       "Latitude": "unknown",       
        "Status": "free"
     },
     {
        "Portid": 3,
-       "Latitude": "unknown",
        "Longtitude": "unknown",
+       "Latitude": "unknown",       
        "Status": "free"
     }
  ]

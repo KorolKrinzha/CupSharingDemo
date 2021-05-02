@@ -1,8 +1,8 @@
 
 
-def showports():
+def showresults():
     import json
-    from secrets import portcount
+    from config import portcount
     result = getports()
 
     ports = json.loads(result)
@@ -12,33 +12,54 @@ def showports():
     known = [p['Portid'] for p in ports[0:portcount]
              if p['Latitude'] != 'unknown' and p['Latitude'] != 'unknown']
     available = list(set(free) & set(known))
-    calculate(available)
+
+    if len(available) == 0:
+        return ([])
+    elif len(available) >= 1:
+        result = {}
+        for i in range(len(available)):
+
+            Latituderes = [p['Latitude']
+                           for p in ports[0:portcount] if p['Portid'] == available[i]][0]
+            Longtituderes = [p['Longtitude']
+                             for p in ports[0:portcount] if p['Portid'] == available[i]][0]
+            print(i, available[i], Latituderes, Longtituderes)
+            result[available[i]] = []
+            result[available[i]].append(Latituderes)
+            result[available[i]].append(Longtituderes)
+
+        return result
+
+    else:
+
+        return ([])
 
 
 def getports():
-    from secrets import ip
+    from config import ip
     from requests import get
     json = get("http://"+ip+"/detect")
     return json.text
 
 
 def changestatus(id):
-    from secrets import ip
+    from config import ip
     from requests import get
     response = get("http://" + ip + "/status?id"+id)
     if response.text == "Updated":
-        talktoclient("Success")
+        return "Success"
+    else:
+        return "Fail"
 
 
-def talktoclient(code):
-    if code == "Fail":
-        print(":<")
-    if code == "Success":
-        print("Cup")
+def download(url, file_name):
 
+    from requests import get
+    response = get(url)
+    if response.headers['Content-Type'] == "image/png":
+        with open(file_name, "wb") as file:
+            file.write(response.content)
+            return "Success"
 
-def calculate(available):
-    if len(available) == 0:
-        return talktoclient("Fail")
-    if len(available) == 1:
-        return
+    else:
+        return "Fail"
