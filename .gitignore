@@ -4,3 +4,4 @@ package-lock.json
 /node_modules
 /bot/config.py
 /bot/__pycache__
+/bot/cupsharing.py
