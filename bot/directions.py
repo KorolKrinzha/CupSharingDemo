@@ -23,7 +23,7 @@ def showresults():
                            for p in ports[0:portcount] if p['Portid'] == available[i]][0]
             Longtituderes = [p['Longtitude']
                              for p in ports[0:portcount] if p['Portid'] == available[i]][0]
-            print(i, available[i], Latituderes, Longtituderes)
+            #print(i, available[i], Latituderes, Longtituderes)
             result[available[i]] = []
             result[available[i]].append(Latituderes)
             result[available[i]].append(Longtituderes)

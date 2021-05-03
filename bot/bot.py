@@ -5,8 +5,10 @@ from aiogram.types import ParseMode, InputMediaPhoto
 from aiogram.types.message import ContentType
 from aiogram.utils.emoji import emojize
 
-import directions
 
+import logging
+
+import directions
 from config import TOKEN
 import cupsharing
 
@@ -19,6 +21,7 @@ dp = Dispatcher(bot)
 async def start(message: types.Message):
     message_text = text(cupsharing.messagehi, '/help')
     await message.reply(message_text, parse_mode=ParseMode.MARKDOWN)
+    
 
 
 @dp.message_handler(commands=['help'])
@@ -45,25 +48,63 @@ async def start_cmd_handler(message: types.Message):
     await message.reply("Хочешь забронировать стаканчик?", reply_markup=keyboard_markup)
 
 
+
+@dp.message_handler(commands='image')
+async def cmd_image(message: types.Message):
+    
+    url = "https://static-maps.yandex.ru/1.x/?\
+ll=37.620070,55.753630&\
+size=650,450&\
+z=13&\
+l=map\
+&pt=37.620070,55.753630,pmwtm1\
+~37.64,55.76363,pmwtm9\
+~37.631242,55.756429,\
+pmwtm3"
+    print(url)
+
+    await bot.send_photo(message.chat.id, types.InputFile.from_url(url)) 
+
+
+
+
 @dp.callback_query_handler(text='no')
 @dp.callback_query_handler(text='yes')
 async def cupanswer(query: types.CallbackQuery):
     answer_data = query.data
 
     if answer_data == 'yes':
-        response = 'Круто! Я посмотрю, что можно сделать...'
+        response = "!"
+        
+        
+        await bot.send_message(query.from_user.id, response, parse_mode=ParseMode.MARKDOWN)
+       
+            
+
+            
+
+            
+
+        if len(directions.showresults())==0:
+            print("no")
+        else:  
+            print(directions.showresults())    
         
 
     elif answer_data == 'no':
         response = text(emojize('Ну лан... :cry: '))
+        await bot.send_message(query.from_user.id, response, parse_mode=ParseMode.MARKDOWN)
     else:
         response = f'Unexpected callback data {answer_data!r}!'
-    if directions.showresults()==[]:
-        print("no")
-    else:  
-        print(directions.showresults())
+        await bot.send_message(query.from_user.id, response, parse_mode=ParseMode.MARKDOWN)
 
-    await bot.send_message(query.from_user.id, response, parse_mode=ParseMode.MARKDOWN)
+
+
+ 
+
+    
+
+    
 
 
 
@@ -79,13 +120,13 @@ async def cupanswer(query: types.CallbackQuery):
     
 
 
-@dp.message_handler(content_types=ContentType.ANY)
-async def unknown_message(msg: types.Message):
-    message_text = text('Прошу прощения, я не смог обработать Ваш запрос... ',
-                        '\nНо у нас есть волшебная',
-                        italic('специальная команда,'), 'которая называется',
-                        '/help', '\nОна поможет')
-    await msg.reply(message_text, parse_mode=ParseMode.MARKDOWN)
+# @dp.message_handler(content_types=ContentType.ANY)
+# async def unknown_message(msg: types.Message):
+#     message_text = text('Прошу прощения, я не смог обработать Ваш запрос... ',
+#                         '\nНо у нас есть волшебная',
+#                         italic('специальная команда,'), 'которая называется',
+#                         '/help', '\nОна поможет')
+#     await msg.reply(message_text, parse_mode=ParseMode.MARKDOWN)
 
 
 # @dp.message_handler(commands=['emoji'])
